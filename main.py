@@ -14,9 +14,9 @@ global correct_answers
 
 # main checks for additional arguments
 def main(args):
-    if len(args) == 2:
+    try:
         menu(int(args[1]))
-    else:
+    except (ValueError, IndexError):
         menu()
 
 def menu(n=5):
@@ -42,11 +42,16 @@ def menu(n=5):
         curr_question += 1
         ans = input(ques)
 
-        if int(ans) == sol:
-            correct_answers += 1
-            print(f"{GREEN}Correct{NORMAL}\n")
-        else:
+        try:
+            ans = int(ans)
+        except ValueError:
             print(f"{RED}Wrong{NORMAL} The correct answer is {sol}\n")
+        else:
+            if ans == sol:
+                correct_answers += 1
+                print(f"{GREEN}Correct{NORMAL}\n")
+            else:
+                print(f"{RED}Wrong{NORMAL} The correct answer is {sol}\n")
 
         if curr_question >= num_questions:
             break
