@@ -35,6 +35,9 @@ def menu(n=5):
             sol, ques = multi()
         elif sel in ["q", "Q", "quit", "Quit"]:
             exit()
+        else:
+            print("You have not selected one of the available options! Please try again.")
+            continue
 
         curr_question += 1
         ans = input(ques)
