@@ -8,10 +8,6 @@ RED = "\033[31m"
 GREEN = "\033[32m"
 BLUE = "\033[96m"
 
-# declare global variables
-global num_questions
-global correct_answers
-
 # main checks for additional arguments
 def main(args):
     try:
@@ -20,9 +16,6 @@ def main(args):
         menu()
 
 def menu(n=5):
-    global num_questions, correct_answers
-
-    num_questions = n
     correct_answers = 0
 
     while True:
@@ -39,7 +32,7 @@ def menu(n=5):
             print("You have not selected one of the available options! Please try again.")
 
 
-    for i in range(num_questions):
+    for i in range(n):
         sol, ques = func()
         ans = input(ques)
 
@@ -52,7 +45,7 @@ def menu(n=5):
                 correct_answers += 1
                 print(f"{GREEN}Correct{NORMAL}\n")
             else:
-                print(f"{RED}Wrong{NORMAL} The correct answer is {sol}\n")
+                print(f"{RED}Wrong{NORMAL} - The correct answer is {sol}\n")
 
     print(f"Congratulations, you answered {correct_answers} questions correctly!")
 
