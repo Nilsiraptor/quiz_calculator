@@ -24,22 +24,23 @@ def menu(n=5):
 
     num_questions = n
     correct_answers = 0
-    curr_question = 0
 
-    # game loop
     while True:
         sel = input(f"Select {BLUE}a{NORMAL}dd, {BLUE}m{NORMAL}ultiply or {BLUE}q{NORMAL}uit: ")
         if sel in ["a", "A", "add", "Add"]:
-            sol, ques = add()
+            func = add
+            break
         elif sel in ["m", "M", "multiply", "Multiply"]:
-            sol, ques = multi()
+            func = multi
+            break
         elif sel in ["q", "Q", "quit", "Quit"]:
             exit()
         else:
             print("You have not selected one of the available options! Please try again.")
-            continue
 
-        curr_question += 1
+
+    for i in range(num_questions):
+        sol, ques = func()
         ans = input(ques)
 
         try:
@@ -52,9 +53,6 @@ def menu(n=5):
                 print(f"{GREEN}Correct{NORMAL}\n")
             else:
                 print(f"{RED}Wrong{NORMAL} The correct answer is {sol}\n")
-
-        if curr_question >= num_questions:
-            break
 
     print(f"Congratulations, you answered {correct_answers} questions correctly!")
 
