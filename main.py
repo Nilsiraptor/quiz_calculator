@@ -18,13 +18,17 @@ def main(args):
 def menu(n=5):
     correct_answers = 0
 
+    username = input("Please enter your name to start: ")
+
     while True:
         sel = input(f"Select {BLUE}a{NORMAL}dd, {BLUE}m{NORMAL}ultiply or {BLUE}q{NORMAL}uit: ")
         if sel in ["a", "A", "add", "Add"]:
             func = add
+            sel = "a"
             break
         elif sel in ["m", "M", "multiply", "Multiply"]:
             func = multi
+            sel = "m"
             break
         elif sel in ["q", "Q", "quit", "Quit"]:
             exit()
@@ -48,6 +52,12 @@ def menu(n=5):
                 print(f"{RED}Wrong{NORMAL} - The correct answer is {sol}\n")
 
     print(f"Congratulations, you answered {correct_answers} questions correctly!")
+
+    writeResult(username, sel, correct_answers/n*100)
+
+def writeResult(user, task, perc):
+    with open("result.txt", "a") as file:
+        file.write(f"{user}\t{task}\t{perc}\n")
 
 def add():
     a = random.randint(10, 200)
